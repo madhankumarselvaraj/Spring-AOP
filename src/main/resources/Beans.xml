@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans  
+    xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:p="http://www.springframework.org/schema/p"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans   
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"> 
+    
+    <bean id="logic" class="com.madhan.AOP.aopexample.BussinessLogic"></bean>
+    <bean id="beforeAdvice"  class="com.madhan.AOP.aopexample.BeforeAdvice"></bean>
+    <bean id="afterAdvice"  class="com.madhan.AOP.aopexample.AfterAdvice"></bean>
+    
+    <bean id="acutalLogic" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="logic"></property>
+        <property name="interceptorNames">
+            <list>
+                <value>beforeAdvice</value>
+                <value>afterAdvice</value>
+            </list>
+        </property>
+    </bean>
+</beans>
